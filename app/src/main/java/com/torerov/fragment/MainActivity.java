@@ -1,5 +1,6 @@
 package com.torerov.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -19,13 +20,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         f1 = OneFragment.newInstance("hello!!!");
         f2 = new TwoFragment();
+        Button btn = (Button)findViewById(R.id.btn_other);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, OtherActivity.class));
+            }
+        });
 
-        Fragment f = new OneFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.container, f1, F1_TAG);
         ft.commit();
 
-        Button btn = (Button) findViewById(R.id.btn_f1);
+        btn = (Button) findViewById(R.id.btn_f1);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
